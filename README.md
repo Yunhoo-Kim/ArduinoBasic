@@ -56,3 +56,5 @@ delay(1000); // 1초동안 기다려라
 저항 값을 변경할 수 있도록 한다.
 
 참고 http://codingrun.com/65
+
+참고 http://deneb21.tistory.com/313  - (장애물 감지)
