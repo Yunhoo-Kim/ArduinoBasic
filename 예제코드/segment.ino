@@ -61,3 +61,37 @@ void loop() {
   digitalWrite(8, HIGH);
   digitalWrite(9, HIGH);
 }
+
+int pin[8] = {2, 3, 4, 5, 6, 7, 8, 9};
+
+void setup() {
+  // 각 핀의 모드를 설정해줍니다.
+  pinMode(pin[0], OUTPUT);
+  pinMode(pin[1], OUTPUT);
+  pinMode(pin[2], OUTPUT);
+  pinMode(pin[3], OUTPUT);
+  pinMode(pin[4], OUTPUT);
+  pinMode(pin[5], OUTPUT);
+  pinMode(pin[6], OUTPUT);
+  pinMode(pin[7], OUTPUT);
+ 
+}
+
+void loop() {
+  digitalWrite(pin[0], HIGH);
+  digitalWrite(pin[1], HIGH);
+  digitalWrite(pin[2], HIGH);
+  digitalWrite(pin[3], HIGH);
+  digitalWrite(pin[4], LOW);
+  digitalWrite(pin[5], LOW);
+  digitalWrite(pin[6], HIGH);
+  digitalWrite(pin[7], HIGH);
+}
+
+
+void setup() {
+  // 각 핀의 모드를 설정해줍니다.
+  for(int i=0;i<8;i++){
+    pinMode(pin[i], OUTPUT);
+  }
+}
