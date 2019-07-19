@@ -59,4 +59,5 @@ void loop() {
   digitalWrite(6, LOW);
   digitalWrite(7, LOW);
   digitalWrite(8, HIGH);
+  digitalWrite(9, HIGH);
 }
