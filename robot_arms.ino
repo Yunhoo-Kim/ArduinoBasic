@@ -1,16 +1,22 @@
-// 아두이노 4자유도 로봇팔 제어
 #include <Servo.h> 
 
 #define XPOS 0
 #define YPOS 1
 
 const int SERVOS = 4;
-int PIN[SERVOS], value[SERVOS], idle[SERVOS], currentAngle[SERVOS], MIN[SERVOS];
-int MAX[SERVOS], INITANGLE[SERVOS], previousAngle[SERVOS],ANA[SERVOS];
+int PIN[SERVOS];
+int value[SERVOS];
+int idle[SERVOS]; 
+int currentAngle[SERVOS]; 
+int MIN[SERVOS];
+int MAX[SERVOS]; 
+int INITANGLE[SERVOS];
+int previousAngle[SERVOS];
+int ANA[SERVOS];
 Servo myservo[SERVOS];
 
 void setup()   {
-
+  Serial.begin(9600);
   //좌우회전 서보모터
   PIN[0] = 9; //서보모터 IO를 9번핀으로 지정
   MIN[0] = 0; //서보모터 최소 회전각도
@@ -55,14 +61,21 @@ void loop() {
       if (value[i] > 612) {
         idle[i] = 0;
       
-        if (currentAngle[i] < MAX[i]) ++currentAngle[i];
+        if (currentAngle[i] < MAX[i]) {
+          ++currentAngle[i];
+        }
+        
         if (!myservo[i].attached()){
           myservo[i].attach(PIN[i]);
         }
+        
         myservo[i].write(currentAngle[i]);     
       } else if (value[i] < 412) {
       idle[i] = 0;
-      if (currentAngle[i] > MIN[i]) --currentAngle[i];
+      if (currentAngle[i] > MIN[i]) {
+        --currentAngle[i];
+      }
+        
       if (!myservo[i].attached()){
         myservo[i].attach(PIN[i]);
       }
@@ -70,6 +83,10 @@ void loop() {
     } else {
       ++idle[i];
     }
+     
+    Serial.print(i + " ");
+    Serial.println(currentAngle[i]);
+      
     if (idle[i] > 100){
       myservo[i].detach(); //서보모터를 일정시간 사용하지 않으면 연결을 끊어둔다.
       idle[i] = 0;
